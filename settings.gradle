@@ -9,9 +9,6 @@ pluginManagement {
                 includeGroup 'com.gtnewhorizons.retrofuturagradle'
             }
         }
-        maven {
-            url 'https://maven.cleanroommc.com'
-        }
         gradlePluginPortal()
         mavenCentral()
         mavenLocal()
@@ -25,31 +22,6 @@ plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '0.4.0'
 }
 
-dependencies {
-
-    // Common:
-    annotationProcessor 'org.ow2.asm:asm-debug-all:5.2'
-    annotationProcessor 'com.google.guava:guava:32.1.2-jre'
-    annotationProcessor 'com.google.code.gson:gson:2.8.9'
-
-    // ForgeGradle:
-    implementation ('zone.rong:mixinbooter:9.1') {
-        transitive = false
-    }
-    annotationProcessor ('zone.rong:mixinbooter:9.1') {
-        transitive = false
-    }
-
-    // RetroFuturaGradle:
-    String mixinBooter = modUtils.enableMixins('zone.rong:mixinbooter:9.1')
-    // modUtils.enableMixins('zone.rong:mixinbooter:9.1', 'mod_id.mixins.refmap.json') << add refmap name as 2nd arg (optional)
-    api (mixinBooter) {
-        transitive = false
-    }
-    annotationProcessor (mixinBooter) {
-        transitive = false
-    }
-}
 
 // Due to an IntelliJ bug, this has to be done
 // rootProject.name = archives_base_name
